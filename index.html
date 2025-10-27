@@ -1,95 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HerForce - Weaving Knowledge into Reality</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        background-color: #2a1d2e;
-        color: #f5e6f0;
-        overflow-x: hidden;
-      }
-      
-      #background-animation {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HerForce - Knowledge in XR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-      @keyframes fall {
-        0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(110vh) translateX(15vw) rotate(720deg); opacity: 0; }
-      }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
 
-      @keyframes fall-reverse {
-        0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(110vh) translateX(-15vw) rotate(-720deg); opacity: 0; }
-      }
+    /* FIX: Corrected the anchor link scrolling issue. */
+    /* This rule ensures that when navigating to a section, there's a top margin */
+    /* equal to the header's height, preventing the section title from being hidden. */
+    /* Increased specificity and added !important to ensure it always applies. */
+    #root main section[id] {
+      scroll-margin-top: 80px !important;
+    }
 
-      .petal {
+    /* Sakura Petal Animation */
+    .sakura-petal {
         position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #ffb7c5;
-        border-radius: 0 50% 50% 50%;
-        transform: rotate(-45deg);
-        animation-name: fall;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
+        top: -20px; /* Start above the screen */
+        background-color: rgba(247, 168, 184, 0.7); /* #f7a8b8 with opacity */
+        border-radius: 50% 0;
+        opacity: 0.9;
+        animation: fall linear infinite;
+        pointer-events: none; /* Make sure they don't block clicks */
+    }
 
-      .petal.reverse {
-        animation-name: fall-reverse;
-      }
-      
-      /* Stagger animations and positions */
-      .petal:nth-child(1) { left: 5%; animation-duration: 15s; animation-delay: -5s; }
-      .petal:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: -2s; }
-      .petal:nth-child(3) { left: 25%; animation-duration: 20s; animation-delay: -10s; }
-      .petal:nth-child(4) { left: 35%; animation-duration: 18s; animation-delay: -7s; }
-      .petal:nth-child(5) { left: 45%; animation-duration: 14s; animation-delay: -1s; }
-      .petal:nth-child(6) { left: 55%; animation-duration: 22s; animation-delay: -15s; }
-      .petal:nth-child(7) { left: 65%; animation-duration: 16s; animation-delay: -4s; }
-      .petal:nth-child(8) { left: 75%; animation-duration: 13s; animation-delay: 0s; }
-      .petal:nth-child(9) { left: 85%; animation-duration: 19s; animation-delay: -9s; }
-      .petal:nth-child(10) { left: 95%; animation-duration: 17s; animation-delay: -3s; }
-
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
-  }
-}
-</script>
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg) translateX(0);
+            opacity: 0.9;
+        }
+        100% {
+            transform: translateY(105vh) rotate(720deg) translateX(20vw);
+            opacity: 0;
+        }
+    }
+  </style>
 </head>
-  <body>
-    <div id="background-animation">
-      <div class="petal"></div>
-      <div class="petal reverse"></div>
-      <div class="petal"></div>
-      <div class="petal reverse"></div>
-      <div class="petal"></div>
-      <div class="petal reverse"></div>
-      <div class="petal"></div>
-      <div class="petal reverse"></div>
-      <div class="petal"></div>
-      <div class="petal reverse"></div>
-    </div>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<body>
+  <div id="root"></div>
+  
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://aistudiocdn.com/react@^19.2.0",
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+      "react/": "https://aistudiocdn.com/react@^19.2.0/",
+      "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
+    }
+  }
+  </script>
+  <script type="module" src="index.tsx"></script>
+</body>
 </html>
