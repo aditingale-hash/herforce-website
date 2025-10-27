@@ -11,18 +11,14 @@
   <style>
     html {
       scroll-behavior: smooth;
+      /* FIX: This is the definitive fix for the sticky header obscuring content. */
+      /* It tells the browser to always leave an 88px space at the top when scrolling to an ID. */
+      /* This is more reliable than applying margins to individual sections. */
+      scroll-padding-top: 88px;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-    }
-
-    /* FIX: Corrected the anchor link scrolling issue. */
-    /* This rule ensures that when navigating to a section, there's a top margin */
-    /* equal to the header's height, preventing the section title from being hidden. */
-    /* Increased specificity and added !important to ensure it always applies. */
-    #root main section[id] {
-      scroll-margin-top: 80px !important;
     }
 
     /* Sakura Petal Animation */

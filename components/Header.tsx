@@ -11,10 +11,21 @@ const Header = () => {
     { href: '#team', label: 'Team' },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href');
+    if (!targetId) return;
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+
   return (
     <header className="sticky top-0 z-50 bg-[#2a1d2e]/80 backdrop-blur-lg border-b border-[#5a3d63]">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#home" className="flex items-center space-x-2">
+        <a href="#home" onClick={handleNavClick} className="flex items-center space-x-2">
           <HerForceLogo />
         </a>
         <div className="hidden md:flex items-center space-x-8">
@@ -22,6 +33,7 @@ const Header = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={handleNavClick}
               className="text-[#f5e6f0] hover:text-[#f7a8b8] transition-colors duration-300 font-medium"
             >
               {link.label}
